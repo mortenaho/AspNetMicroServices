@@ -70,7 +70,7 @@ public class ProductController : ControllerBase
     public async Task<ActionResult<Product>> CreateProduct(Product product)
     {
         await _productRepository.CreateProduct(product);
-        return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
+        return Ok(product);
     }
     [HttpPut("[action]")]
     public async Task<ActionResult<Product>> UpdateProduct(Product product)

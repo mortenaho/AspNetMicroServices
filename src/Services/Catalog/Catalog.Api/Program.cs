@@ -1,5 +1,6 @@
 using Catalog.Api.Data;
 using Catalog.Api.Repositories;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICatalogContext, CatalogContext>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddSwaggerGen(option =>
+{
+    option.SwaggerDoc("v1", new OpenApiInfo() { Version = "v1", Title = "Catalog.Api" });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
